@@ -1,0 +1,55 @@
+# Copy this file to rules.toml and edit it. The first matching rule wins.
+# `match` holds case-insensitive regular expressions, searched in the file name.
+# `to` is a topic folder, a path starting with "~", "LEAVE" or "TRASH".
+
+source = "~/Downloads"
+root = "~/Filed"
+camera_photos = "~/Pictures/To import"
+other_images = "~/Pictures/Downloaded"
+
+# Topics in `synced` go to `synced_root`. Use it for a folder that a cloud
+# service syncs, and list only small topics.
+synced_root = "~/Documents/Filed"
+synced = ["Tax", "Bills", "Travel"]
+
+# Leave unfinished downloads and secrets for a person to handle.
+[[rule]]
+to = "LEAVE"
+match = ['\.(part|crdownload|download)$', '\.(pem|key|crt|der|jwt)$', 'passwords?.*\.csv$']
+
+[[rule]]
+to = "TRASH"
+min_age_days = 7
+match = ['\.(dmg|pkg)$']
+
+[[rule]]
+to = "Recovery codes"
+match = ['emergency[-_ ]kit', 'recovery[-_ ](codes|kit)', 'backup[-_ ]codes']
+
+[[rule]]
+to = "Tax"
+match = ['tax[-_ ]return', 'tax[-_ ]assessment']
+
+[[rule]]
+to = "Bills"
+match = ['invoice', '^receipt', '^INV\d']
+
+[[rule]]
+to = "Travel"
+match = ['\.pkpass$', '\.ics$', 'e-?ticket', 'booking', 'reservation', 'itinerary']
+
+[[rule]]
+to = "Books"
+match = ['\.(epub|azw3|mobi)$']
+
+[[rule]]
+to = "Fonts"
+match = ['\.(ttf|otf|woff2?)$']
+
+[[rule]]
+to = "Software"
+match = ['\.(jar|exe|msi|AppImage)$']
+
+[[rule]]
+to = "Data"
+match = ['\.(csv|parquet|sqlite)$']

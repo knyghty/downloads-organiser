@@ -1,0 +1,5 @@
+# Personal data: real rules and the log of every moved file name.
+rules.toml
+moves.log
+__pycache__/
+.ruff_cache/
